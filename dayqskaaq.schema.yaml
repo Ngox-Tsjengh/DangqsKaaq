@@ -122,15 +122,15 @@ luna_pinyin:
   #suffix: ";"
   #tips: 〔粵語〕
 
-zyenpheng:
-  tag: zyenpheng
-  dictionary: zyenpheng
-  prefix: "x"
-  suffix: ";"
-  tips: 〔切韻〕
+#zyenpheng:
+  #tag: zyenpheng
+  #dictionary: zyenpheng
+  #prefix: "x"
+  #suffix: ";"
+  #tips: 〔切韻〕
 
 dayqskaaq_reverse_lookup:
-  tags: [ luna_pinyin,  zyenpheng ]
+  tags: [ luna_pinyin ]
   overwrite_comment: false
   dictionary: dayqskaaq
   comment_format:
@@ -159,6 +159,6 @@ recognizer:
   import_preset: default
   patterns:
     punct: "^/([0-9]0?|[a-z]+)$"
-    luna_pinyin: "`[a-wy-z]*;?$"
-    zyenpheng: "x[a-wy-z]*;?$"
+    luna_pinyin: "`[a-z]*;?$"
+    #zyenpheng: "x[a-wy-z]*;?$"
     #jyut6ping3: "f[a-z]*;?$"
