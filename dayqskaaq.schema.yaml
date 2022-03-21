@@ -10,8 +10,8 @@ schema:
     - Frind <498296816@qq.com>
   description: |
     對應關係：v-ə y-ŋ q-ʔ  
-    清鼻流音：hm-m̥ hn-n̥ hy-ŋ̥ hl-l̥ hr-r̥
-    心邪：
+    hm-m̥ hn-n̥ hy-ŋ̥ hl-l̥ hr-r̥
+    
   dependencies:
     - luna_pinyin
     #- jyut6ping3

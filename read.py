@@ -72,7 +72,7 @@ with open('phengs.json', 'w', encoding='utf-8') as f:
     json.dump(phengs, f, ensure_ascii=False, indent=4)
     
 dict_head = """---
-name: dkzp
+name: dayqskaaq
 version: \"2022.10.15\"
 sort: by_weight
 use_preset_vocabulary: true
