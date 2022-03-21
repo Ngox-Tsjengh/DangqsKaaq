@@ -31,6 +31,7 @@ for row in sheet.iter_rows(min_row=3, max_row=8546,
     qim = qim.replace(')', '')
     qim = qim.replace('[', '')
     qim = qim.replace(']', '')
+
     qim = qim.replace('ʰ', 'h')
     qim = qim.replace('ɹ', 'r')
     qim = qim.replace('w̥', 'hw')
@@ -41,6 +42,8 @@ for row in sheet.iter_rows(min_row=3, max_row=8546,
     qim = qim.replace('ŋ̊', 'hy')
     qim = qim.replace('ŋ', 'y')
     qim = qim.replace('ʔ', 'q')
+    qim = qim.replace('ɡ', 'g')
+
     qim = qim.replace('a̠', 'aa')
     qim = qim.replace('e̠', 'ee')
     qim = qim.replace('i̠', 'ii')
@@ -77,7 +80,7 @@ use_preset_vocabulary: true
 
 """
 
-with open('dangqskaaq.dict.yaml', 'w') as f:
+with open('dayqskaaq.dict.yaml', 'w') as f:
     f.writelines(dict_head)
     for pheng in phengs:
         string = [ f'{key}\t{pheng[key]}' for key in pheng ]
