@@ -1,0 +1,164 @@
+﻿# Rime schema
+# encoding: utf-8
+
+schema:
+  schema_id: dayqskaaq
+  name: 布之道上古全拼
+  version: "0.3"
+  author:
+    - 西風 <>
+    - Frind <498296816@qq.com>
+  description: |
+    對應關係：v-ə y-ŋ q-ʔ  
+    清鼻流音：hm-m̥ hn-n̥ hy-ŋ̥ hl-l̥ hr-r̥
+    心邪：
+  dependencies:
+    - luna_pinyin
+    #- jyut6ping3
+    - zyenpheng
+
+engine:
+  processors:
+    - ascii_composer
+    - recognizer
+    - key_binder
+    - speller
+    - punctuator
+    - selector
+    - navigator
+    - express_editor
+  segmentors:
+    - ascii_segmentor
+    - matcher
+    - affix_segmentor@luna_pinyin
+    #- affix_segmentor@jyut6ping3
+    - affix_segmentor@zyenpheng
+    - abc_segmentor
+    - punct_segmentor
+    - fallback_segmentor
+  translators:
+    - punct_translator
+    - reverse_lookup_translator
+    - script_translator
+    - script_translator@luna_pinyin
+    #- script_translator@jyut6ping3
+    - script_translator@zyenpheng
+  filters:
+    - simplifier
+    - uniquifier
+    - reverse_lookup_filter@dayqskaaq_reverse_lookup
+
+speller:
+  alphabet: zyxwvutsrqponmlkjihgedba;
+# x j f c
+  algebra:
+    - abbrev/^([pbtdszkgqcrlmnyxhf]).+$/$1/
+    - abbrev/^([ptskqrlmny]h).+$/$1/
+    - abbrev/^([pbszkgqcrmyxhf][rlj]).+$/$1/
+    - abbrev/^([pskqmy]h[rlj]).+$/$1/
+    - abbrev/^(p[kqn]).+$/$1/
+    - abbrev/^(p[kqc][rwh]).+$/$1/
+    - abbrev/^(pqh[rlw]).+$/$1/
+    - abbrev/^([bgm];).+$/$1/
+    - abbrev/^(g[rw];).+$/$1/
+    - abbrev/^(ty).+$/$1/
+    - abbrev/^(ty[rh]).+$/$1/
+    - abbrev/^(s[bkgqcrlnmyf]).+$/$1/
+    - abbrev/^(s[kqlmny]h).+$/$1/
+    - abbrev/^(sy[rw]).+$/$1/
+    - abbrev/^(z[rlj]).+$/$1/
+    - abbrev/^(m[pbg]).+$/$1/
+    - abbrev/^(m[pbgy][rlwh]).+$/$1/
+    - abbrev/^(n[lj]).+$/$1/
+    - abbrev/^(y[grjw]).+$/$1/
+    - abbrev/^(yg[rl]).+$/$1/
+    - abbrev/^([kgqc]w).+$/$1/
+    - abbrev/^([kq]hw).+$/$1/
+    - abbrev/^([lr]c).+$/$1/
+    - abbrev/^([xhf]y).+$/$1/
+    - abbrev/^(f[bkrlmyw]).+$/$1/
+
+translator:
+  dictionary: dayqskaaq
+  preedit_format:
+    - xform/ee(|[ '])/e̠/
+    - xform/ii(|[ '])/i̠/
+    - xform/oo(|[ '])/o̠/
+    - xform/uu(|[ '])/u̠/
+    - xform/vv(|[ '])/ə̠/
+    - xform/v(|[ '])/ə/
+    - xform/r(|[ '])/ɹ/
+
+    - xform/ph(|[ '])/pʰ/
+    - xform/th(|[ '])/tʰ/
+    - xform/kh(|[ '])/kʰ/
+    - xform/hm(|[ '])/m̥/
+    - xform/hn(|[ '])/n̥/
+    - xform/hy(|[ '])/ŋ̥/
+    - xform/hl(|[ '])/l̥/
+    - xform/hr(|[ '])/r̥/
+
+    - xform/g(|[ '])/ɡ/
+    - xform/y(|[ '])/ŋ/
+    - xform/q(|[ '])/ʔ/
+
+  spelling_hints: 12
+
+luna_pinyin:
+  tag: luna_pinyin
+  dictionary: luna_pinyin
+  prefix: "`"
+  suffix: ";"
+  tips: 〔普通話〕
+  preedit_format:
+    - xform/([nl])v/$1ü/
+    - xform/([nl])ue/$1üe/
+    - xform/([jqxy])v/$1u/
+
+#jyut6ping3:
+  #tag: jyut6ping3
+  #dictionary: jyut6ping3
+  #prefix: "f"
+  #suffix: ";"
+  #tips: 〔粵語〕
+
+zyenpheng:
+  tag: zyenpheng
+  dictionary: zyenpheng
+  prefix: "x"
+  suffix: ";"
+  tips: 〔切韻〕
+
+dayqskaaq_reverse_lookup:
+  tags: [ luna_pinyin,  zyenpheng ]
+  overwrite_comment: false
+  dictionary: dayqskaaq
+  comment_format:
+    - xform/=/ /
+
+punctuator:
+  full_shape:
+    "<" : { commit: "，" }
+    ">" : { commit: "。" }
+    "?" : [ ？, ／, "/", ÷ ]
+    ":" : [ ：, ； ]
+    "{" : [ 「, 【, 《, 〔, ［, 『, 〖, 〈, ｛ ]
+    "}" : [ 」, 】, 》, 〕, ］, 』, 〗, 〉, ｝ ]
+  half_shape:
+    "<" : { commit: "，" }
+    ">" : { commit: "。" }
+    "?" : [ ？, ／, "/", ÷ ]
+    ":" : [ ：, ； ]
+    "{" : [ 「, 【, 《, 〔, ［, 『, 〖, 〈, ｛ ]
+    "}" : [ 」, 】, 》, 〕, ］, 』, 〗, 〉, ｝ ]
+
+key_binder:
+  import_preset: default
+
+recognizer:
+  import_preset: default
+  patterns:
+    punct: "^/([0-9]0?|[a-z]+)$"
+    luna_pinyin: "`[a-wy-z]*;?$"
+    zyenpheng: "x[a-wy-z]*;?$"
+    #jyut6ping3: "f[a-z]*;?$"
